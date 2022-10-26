@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MortalKombat.Fighters
 {
-    public abstract class Fighter : IFighter
+    public abstract class Fighter
     {
         public int HP { get; set; }
         public int BasicDamage { get; set; }

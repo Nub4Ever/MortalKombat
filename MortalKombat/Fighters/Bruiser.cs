@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MortalKombat.Fighters
 {
-    public class Bruiser : Fighter, IBruiser
+    public class Bruiser : Fighter
     {
         public int NumberOfHits { get; set; }
         public int InitialCritChance { get; set; }
