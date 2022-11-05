@@ -32,12 +32,13 @@ namespace MortalKombat
             Random rand = new Random();
             var r = rand.Next(1, 100);
             r = r % 2 + 1;
-
             Console.WriteLine("\n\t\t\t\t\tLet The Fight Begin! First goes player" + r + "\n");
-
             return r;
         }
 
+        // impresia mea e ca sunt prea multe metode publice in clasa Arena
+        // o singura functie "Fight" pe care sa o spargi in mai mult efunctii private
+        // cred ca ar fi fost mult mai bine
         public void PrintStartMessage()
         {
             Console.WriteLine("\t\t\t\t\t\tWelcome To The Arena!");
@@ -48,6 +49,15 @@ namespace MortalKombat
 
         public void PrintFormat(Fighter fighter1, Fighter fighter2)
         {
+            if (fighter1 is null)
+            {
+                throw new ArgumentNullException(nameof(fighter1));
+            }
+            if (fighter2 is null)
+            {
+                throw new ArgumentNullException(nameof(fighter2));
+            }
+
             string format = "{0,-25} {1,30}" + Environment.NewLine;
             var stringBuilder = new StringBuilder().AppendFormat(format, "Player1 - " + fighter1.GetType().Name,
                                                                          "Player2 - " + fighter2.GetType().Name);
@@ -62,6 +72,7 @@ namespace MortalKombat
             else if (fighter2.HP <= 0)
             {
                 fighter2.HP = 0;
+                //dry?
                 stringBuilder.AppendFormat(format, fighter1.HP + " HP", fighter2.HP + " HP");
                 Console.WriteLine(stringBuilder.ToString());
             }
@@ -76,6 +87,15 @@ namespace MortalKombat
 
         public Fighter EndGame(Fighter fighter1, Fighter fighter2)
         {
+            //fighter1 sau fighter2 ar putea fi null
+            if (fighter1 is null)
+            {
+                throw new ArgumentNullException(nameof(fighter1));
+            }
+            if (fighter2 is null)
+            {
+                throw new ArgumentNullException(nameof(fighter2));
+            }
             Console.ReadKey();
             Console.Clear();
 
@@ -118,6 +138,7 @@ namespace MortalKombat
             stringBuilder = new StringBuilder().AppendFormat(format, winner.GetType().Name +
                                                     " Fatality hit for 999 HP");
             Console.WriteLine(stringBuilder.ToString());
+            // ???
             loser.HP = -999;
 
             stringBuilder = GetStatus(fighter1, fighter2);

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace MortalKombat.Fighters
 {
@@ -12,6 +7,7 @@ namespace MortalKombat.Fighters
         public int NumberOfHits { get; set; }
         public int InitialCritChance { get; set; }
 
+        //nu cred ca acest constructor are vreo utilitate
         public Bruiser() : base() { }
         public Bruiser(int hp, int basicDamage, int specialDamage, int specialAvailable, string fatalityQuote,
             int critChance) :

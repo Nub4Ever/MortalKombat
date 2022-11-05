@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace MortalKombat.Fighters
 {
@@ -11,6 +7,7 @@ namespace MortalKombat.Fighters
         public int DodgeChance { get; set; }
         public int InitialCritChance { get; set; }
 
+        //nu cred ca acest constructor are vreo utilitate
         public Assassin() : base() { }
         public Assassin(int hp, int basicDamage, int specialDamage, int specialAvailable, string fatalityQuote,
             int critChance) :
@@ -19,11 +16,13 @@ namespace MortalKombat.Fighters
             DodgeChance = 30;
             InitialCritChance = critChance;
         }
+
         public override void ApplyPassive()
         {
             CritChance = InitialCritChance;
             int range = (int)Math.Round(100.0 / DodgeChance);
             Random rand = new Random();
+            // r ???
             var r = rand.Next(1, range + 1);
 
             if (r == 1) //dodge hit

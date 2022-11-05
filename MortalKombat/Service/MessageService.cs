@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using MortalKombat.Fighters;
 
 namespace MortalKombat.Service
@@ -11,6 +7,15 @@ namespace MortalKombat.Service
     {
         public void OnBasicHit(object source, MessageEventArgs e)
         {
+            //source si e ar putea fi null
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(e));
+            }
             string type = source.GetType().Name;
             string format;
             StringBuilder stringBuilder;
@@ -36,6 +41,15 @@ namespace MortalKombat.Service
 
         public void OnCriticalHit(object source, MessageEventArgs e)
         {
+            //source si e ar putea fi null
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(e));
+            }
             string type = source.GetType().Name;
             string format;
             StringBuilder stringBuilder;
@@ -60,6 +74,15 @@ namespace MortalKombat.Service
         }
         public void OnMissedHit(object source, EventArgs e)
         {
+            //source si e ar putea fi null
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(e));
+            }
             string type = source.GetType().Name;
             string format;
             StringBuilder stringBuilder;
@@ -84,6 +107,15 @@ namespace MortalKombat.Service
 
         public void OnSpecialHit(object source, EventArgs e)
         {
+            //source si e ar putea fi null
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+            if (e == null)
+            {
+                throw new ArgumentNullException(nameof(e));
+            }
             string type = source.GetType().Name;
             string format;
             StringBuilder stringBuilder;

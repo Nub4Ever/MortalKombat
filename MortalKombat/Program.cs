@@ -1,8 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using System.Text;
-using MortalKombat.Factory;
-using MortalKombat.Fighters;
-using MortalKombat.Service;
+﻿using MortalKombat.Fighters;
 
 namespace MortalKombat
 {
@@ -24,6 +20,8 @@ namespace MortalKombat
             Console.Clear();
             arena.PrintFormat(player1, player2);
 
+            // codul asta cred ca ar fi trebuit sa stea intr-o funtie
+            // poate in clasa Arena?
             while (player1.HP > 0 && player2.HP > 0)
             {
                 if (first == 1)
@@ -38,8 +36,6 @@ namespace MortalKombat
                         arena.EndGame(player1, player2);
                         break;
                     }
-                    
-
                     Console.ReadKey();
                     player2.Hit(player1);
                     arena.PrintFormat(player1, player2);
@@ -50,7 +46,8 @@ namespace MortalKombat
                         arena.EndGame(player1, player2);
                         break;
                     }
-                } else
+                } 
+                else
                 {
                     Console.ReadKey();
                     player2.Hit(player1);
@@ -80,8 +77,5 @@ namespace MortalKombat
         {
             Console.WriteLine($"Exception caught by handler: {e.ExceptionObject}");
         }
-
-
-
     }
 }

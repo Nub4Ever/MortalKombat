@@ -1,8 +1,6 @@
 ﻿using Xunit;
 using MortalKombat;
-using Moq;
 using MortalKombat.Fighters;
-using System.Collections.Generic;
 
 namespace UnitTesting
 {
@@ -31,6 +29,7 @@ namespace UnitTesting
         public void CriticalHit_ShouldDecreaseMoreLife()
         {
             // arrange
+            //aici de ce nu ai folosit clasa factory pentru a crea luptatorii?
             var sut = new Bruiser(100, 10, 35, 0, "You Weak, Pathetic Fool!", 100);
 
             var target = new Bruiser(100, 10, 35, 1, "You Weak, Pathetic Fool!", 50);
@@ -47,6 +46,7 @@ namespace UnitTesting
         public void CriticalHit_ShouldResetDamageAfter()
         {
             // arrange
+            //aici de ce nu ai folosit clasa factory pentru a crea luptatorii?
             var sut = new Bruiser(100, 10, 35, 0, "You Weak, Pathetic Fool!", 100);
 
             var target = new Bruiser(100, 10, 35, 1, "You Weak, Pathetic Fool!", 50);
@@ -127,7 +127,7 @@ namespace UnitTesting
                     }
                 }
 
-                if (String.Equals(winner.GetType().Name, "Bruiser"))
+                if (string.Equals(winner.GetType().Name, "Bruiser"))
                 {
                     countWinner1++;
                 } else

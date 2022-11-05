@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace MortalKombat.Fighters
 {
     public abstract class Fighter
     {
+        int initialDamage;
+
         public int HP { get; set; }
         public int BasicDamage { get; set; }
         public int SpecialDamage { get; set; }
         public int SpecialAvailable { get; set; }
         public string FatalityQuote { get; set; }
         public int CritChance { get; set; }
-        int InitialDamage;
         public int PassiveAvailable { get; set; }
         public int CriticalSucces { get; set; }
         public int DodgeSucces { get; set; }
@@ -25,7 +21,7 @@ namespace MortalKombat.Fighters
         {
             HP = hp;
             BasicDamage = basicDamage;
-            InitialDamage = basicDamage;
+            initialDamage = basicDamage;
             SpecialDamage = specialDamage;
             SpecialAvailable = specialAvailable;
             FatalityQuote = fatalityQuote;
@@ -35,6 +31,7 @@ namespace MortalKombat.Fighters
             DodgeSucces = 0;
         }
 
+        //nu cred ca acest constructor are vreo utilitate
         public Fighter()
         {
             HP = 0;
@@ -53,9 +50,10 @@ namespace MortalKombat.Fighters
             else
             {
                 CriticalSucces = 0;
-                BasicDamage = InitialDamage;
+                BasicDamage = initialDamage;
                 int range = (int)Math.Round(100.0 / CritChance);
                 Random rand = new Random();
+                // numele variabilei r nu ma ajuta sa inteleg ce ai vrut sa faci aici
                 var r = rand.Next(1, range + 1);
 
                 if (r == 1)
@@ -76,12 +74,16 @@ namespace MortalKombat.Fighters
 
         public void Hit(Fighter fighter)
         {
+            //fighter ar putea fi null
+            if(fighter == null)
+            {
+                throw new ArgumentNullException(nameof(fighter));
+            }
             Random rand = new Random();
+            //r ???
             var r = rand.Next(1, 100);
 
-            string type = GetType().Name;
-            string format;
-            StringBuilder stringBuilder;
+            //am curatat variabile ratacite
 
             ApplyPassive();
 
@@ -92,19 +94,15 @@ namespace MortalKombat.Fighters
                 fighter.DodgeSucces = 0;
                 return;
             }
-
-
             if (r > 20 && r < 40 && SpecialAvailable == 1 && PassiveAvailable != 1)
             {
                 OnSpecialHit();
 
                 fighter.HP -= SpecialDamage;
                 SpecialAvailable = 0;
-
             }
             else
             {
-
                 CalculateCritical();
                 if (CriticalSucces == 1)
                 {
@@ -114,10 +112,10 @@ namespace MortalKombat.Fighters
                 {
                     OnBasicHit(BasicDamage);
                 }
-
                 fighter.HP -= BasicDamage;
             }
         }
+
         protected virtual void OnMissedHit()
         {
             if (MissedHit != null)
@@ -151,6 +149,7 @@ namespace MortalKombat.Fighters
         }
     }
 
+    //cred ca ar fi meritat fisierul ei aceasta clasa
     public class MessageEventArgs : EventArgs
     {
         public int Damage { get; set; }
